@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Geontak Park · 박건탁</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink:     #0e1117;
+    --slate:   #151b26;
+    --card:    #1c2433;
+    --border:  #28344a;
+    --muted:   #64748b;
+    --body:    #b8c4d6;
+    --light:   #e8edf5;
+    --gold:    #c9a44a;
+    --gold2:   #e8c97a;
+    --accent:  #3b6ea5;
+    --accent2: #5a90cc;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--body);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(14,17,23,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--light);
+    letter-spacing: 0.01em;
+  }
+
+  .nav-name span {
+    color: var(--gold);
+    font-style: italic;
+    margin-left: 0.4em;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 3rem 5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+    color: var(--gold);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 2.5rem;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    line-height: 0.95;
+    color: var(--light);
+    margin-bottom: 0.15em;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-name-kr {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.8rem);
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 2.5rem;
+    display: block;
+  }
+
+  .hero-tagline {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--body);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+
+  .hero-tagline strong {
+    color: var(--light);
+    font-weight: 500;
+  }
+
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 3rem;
+  }
+
+  .pill {
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.78rem;
+    color: var(--body);
+    letter-spacing: 0.04em;
+    background: transparent;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .pill:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.6rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  .btn-primary:hover { background: var(--gold2); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--body);
+    border: 1px solid var(--border);
+  }
+
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── DUALITY DIVIDER ── */
+  .duality-bar {
+    width: 100%;
+    padding: 4rem 3rem;
+    background: var(--slate);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .duality-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .duality-side {
+    text-align: center;
+  }
+
+  .duality-lang {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+  }
+
+  .duality-word {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    color: var(--light);
+  }
+
+  .duality-word.kr { font-family: 'Noto Sans KR', sans-serif; font-weight: 400; }
+
+  .duality-divider {
+    width: 1px;
+    height: 80px;
+    background: var(--border);
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 6rem 3rem;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--light);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--ink); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+
+  .about-text p {
+    color: var(--body);
+    font-size: 1.05rem;
+    font-weight: 300;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-text p strong {
+    color: var(--light);
+    font-weight: 500;
+  }
+
+  .about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.4rem 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    transition: border-color 0.2s;
+  }
+
+  .stat-card:hover { border-color: var(--gold); }
+
+  .stat-icon {
+    font-size: 1.6rem;
+    width: 2.5rem;
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.2rem;
+  }
+
+  .stat-value {
+    color: var(--light);
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--slate); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 1.2rem;
+    margin-top: 2.5rem;
+  }
+
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .skill-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+
+  .skill-icon { font-size: 1.4rem; margin-bottom: 0.75rem; }
+
+  .skill-name {
+    font-weight: 600;
+    color: var(--light);
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .skill-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--ink); }
+
+  .timeline {
+    margin-top: 3rem;
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .timeline-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2.35rem;
+    top: 0.5rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--ink);
+  }
+
+  .timeline-meta {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+  }
+
+  .timeline-role {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--light);
+    margin-bottom: 0.25rem;
+  }
+
+  .timeline-org {
+    font-size: 0.9rem;
+    color: var(--accent2);
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+  }
+
+  .timeline-desc {
+    font-size: 0.9rem;
+    color: var(--body);
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  /* ── PROJECT ── */
+  #project { background: var(--slate); }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2.5rem;
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    transition: border-color 0.25s;
+  }
+
+  .project-card:hover { border-color: var(--gold); }
+
+  .project-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(201,164,74,0.12);
+    border: 1px solid rgba(201,164,74,0.3);
+    border-radius: 4px;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.7rem;
+    color: var(--light);
+    margin-bottom: 0.75rem;
+  }
+
+  .project-desc {
+    color: var(--body);
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .project-visual {
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--border) 0%, rgba(59,110,165,0.3) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    flex-shrink: 0;
+  }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--ink); }
+
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .edu-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.8rem;
+    transition: border-color 0.2s;
+  }
+
+  .edu-card:hover { border-color: var(--gold); }
+
+  .edu-year {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .edu-inst {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--light);
+    margin-bottom: 0.25rem;
+  }
+
+  .edu-detail {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  /* ── CERTS ── */
+  .cert-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .cert-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1.2rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: var(--body);
+    transition: border-color 0.2s;
+  }
+
+  .cert-item:hover { border-color: var(--gold); }
+
+  .cert-item .badge {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .cert-item strong { color: var(--light); }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--slate);
+    text-align: center;
+  }
+
+  .contact-tagline {
+    font-size: 1.1rem;
+    color: var(--body);
+    font-weight: 300;
+    max-width: 520px;
+    margin: 1.5rem auto 2.5rem;
+    line-height: 1.75;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid var(--border);
+    padding: 2rem 3rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .nav-links a { font-size: 0.75rem; }
+
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 6rem 1.5rem 4rem; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .edu-grid { grid-template-columns: 1fr; }
+
+    .project-card {
+      grid-template-columns: 1fr;
+    }
+
+    .project-visual { display: none; }
+
+    .duality-bar { padding: 3rem 1.5rem; }
+    .duality-inner { gap: 1rem; }
+
+    .timeline { padding-left: 1.5rem; }
+    .timeline-dot { left: -1.85rem; }
+  }
+
+  /* ── SCROLL FADE IN ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-name">Geontak Park <span>박건탁</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#project">Project</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Portfolio · 2026</div>
+  <h1 class="hero-name">Geontak<br>Park</h1>
+  <span class="hero-name-kr">박건탁</span>
+  <p class="hero-tagline">
+    Born in Korea. Raised in America. <strong>Fluent in both worlds.</strong><br>
+    Bilingual communicator seeking to bridge people, languages, and ideas.
+  </p>
+  <div class="hero-pills">
+    <span class="pill">Native English</span>
+    <span class="pill">Intermediate Korean</span>
+    <span class="pill">TOEIC 915</span>
+    <span class="pill">Military Service ✓</span>
+    <span class="pill">Based in South Korea</span>
+    <span class="pill">AI Certified</span>
+  </div>
+  <div class="hero-cta">
+    <a href="mailto:geontakpark@gmail.com" class="btn btn-primary">✉ Get in touch</a>
+    <a href="https://github.com/pgun18" target="_blank" class="btn btn-ghost">⌥ GitHub</a>
+    <a href="https://pgun18.github.io/tradingcalendar" target="_blank" class="btn btn-ghost">↗ Live Project</a>
+  </div>
+</div>
+
+<!-- DUALITY BAR -->
+<div class="duality-bar">
+  <div class="duality-inner">
+    <div class="duality-side">
+      <div class="duality-lang">American side</div>
+      <div class="duality-word">Geontak</div>
+    </div>
+    <div class="duality-divider"></div>
+    <div class="duality-side">
+      <div class="duality-lang">Korean side</div>
+      <div class="duality-word kr">건탁</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">About me</div>
+    <h2 class="section-title">Two countries.<br>One person.</h2>
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <p>I was born in Korea, moved to the United States at age three, and spent my entire childhood and education there. <strong>English isn't a second language — it's my language.</strong> I graduated from American schools and completed coursework at Howard Community College before returning to Korea for mandatory military service.</p>
+        <p>After finishing service, I find myself in a unique position: fully rooted in Korean society, yet carrying the communication instincts, cultural fluency, and mindset of someone who grew up American. <strong>That duality isn't a complication — it's my edge.</strong></p>
+        <p>I'm young, my resume is still growing, and I know it. But I'm self-aware, hungry, and I show up ready to learn. Give me a room with people and I'll make it work — in either language.</p>
+      </div>
+      <div class="about-stats fade-in">
+        <div class="stat-card">
+          <div class="stat-icon">🇺🇸</div>
+          <div>
+            <div class="stat-label">Raised in</div>
+            <div class="stat-value">United States · K–12 American education</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📝</div>
+          <div>
+            <div class="stat-label">English proficiency</div>
+            <div class="stat-value">Native · TOEIC 915 (understated)</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🎖️</div>
+          <div>
+            <div class="stat-label">Military service</div>
+            <div class="stat-value">Republic of Korea Army · completed</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🎓</div>
+          <div>
+            <div class="stat-label">Education</div>
+            <div class="stat-value">Associate's · Howard Community College</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📍</div>
+          <div>
+            <div class="stat-label">Currently</div>
+            <div class="stat-value">South Korea · seeking English teaching roles</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">What I bring</div>
+    <h2 class="section-title">Skills &amp; strengths</h2>
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🗣️</div>
+        <div class="skill-name">Bilingual Communication</div>
+        <div class="skill-desc">Native English, intermediate Korean. I don't just translate words — I translate context and culture.</div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">👧</div>
+        <div class="skill-name">Working with Children</div>
+        <div class="skill-desc">Human Growth & Development coursework plus hands-on daycare practicum (ages 6 weeks–5 years).</div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">☕</div>
+        <div class="skill-name">Customer Service</div>
+        <div class="skill-desc">Cashier and barista experience across multiple US service environments. Latte art included.</div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">💻</div>
+        <div class="skill-name">Web Development</div>
+        <div class="skill-desc">Built and deployed a live trading calendar app on GitHub Pages — HTML, CSS, JavaScript.</div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🔧</div>
+        <div class="skill-name">PC Building &amp; Repair</div>
+        <div class="skill-desc">Hardware builds, diagnostics, and Windows troubleshooting from personal experience.</div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">📈</div>
+        <div class="skill-name">Investing &amp; Trading</div>
+        <div class="skill-desc">Markets and technical analysis — built custom tooling to track my own trading activity.</div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🤝</div>
+        <div class="skill-name">Crisis &amp; Community Work</div>
+        <div class="skill-desc">Volunteer at Grassroots Crisis Intervention — crisis support and homeless outreach coordination.</div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🤖</div>
+        <div class="skill-name">AI Literacy</div>
+        <div class="skill-desc">Anthropic-certified in Claude 101 and AI Fluency: Framework & Foundations. Staying ahead of the curve.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">History</div>
+    <h2 class="section-title">Experience &amp;<br>background</h2>
+    <div class="timeline">
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">2024 – 2025</div>
+        <div class="timeline-role">Republic of Korea Army</div>
+        <div class="timeline-org">Mandatory Military Service</div>
+        <div class="timeline-desc">Completed mandatory service in a bilingual environment that significantly strengthened my Korean language ability, discipline, and professional communication under pressure.</div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">2023 – 2024</div>
+        <div class="timeline-role">Volunteer Crisis Worker</div>
+        <div class="timeline-org">Grassroots Crisis Intervention · Maryland, USA</div>
+        <div class="timeline-desc">Provided crisis support and homeless outreach services to individuals and families in need. Organized donation drives and community engagement with classmates.</div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">2022</div>
+        <div class="timeline-role">Cashier</div>
+        <div class="timeline-org">Sushi Farm</div>
+        <div class="timeline-desc">Front-of-house customer service and cash handling in a fast-paced restaurant environment.</div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">2020 – 2022</div>
+        <div class="timeline-role">Cashier &amp; Barista</div>
+        <div class="timeline-org">Tous les Jours (America)</div>
+        <div class="timeline-desc">Cashier, restocking, and barista-level coffee and tea preparation — including latte art. Developed consistency and customer rapport over 14 months.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT -->
+<section id="project">
+  <div class="container">
+    <div class="section-label">Code</div>
+    <h2 class="section-title">What I've built</h2>
+    <div class="project-card fade-in">
+      <div>
+        <div class="project-tag">Live · GitHub Pages</div>
+        <div class="project-title">Trading Calendar — Money Tracker</div>
+        <p class="project-desc">A personal web application to track finances and trading activity over time. Built and deployed entirely from scratch — HTML, CSS, and JavaScript hosted on GitHub Pages. The project demonstrates self-driven learning, technical initiative, and a genuine interest in financial literacy.</p>
+        <div class="project-links">
+          <a href="https://pgun18.github.io/tradingcalendar" target="_blank" class="btn btn-primary">↗ View Live App</a>
+          <a href="https://github.com/pgun18/tradingcalendar" target="_blank" class="btn btn-ghost">⌥ Source Code</a>
+        </div>
+      </div>
+      <div class="project-visual">📊</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="section-label">Formation</div>
+    <h2 class="section-title">Education &amp;<br>certifications</h2>
+    <div class="edu-grid">
+      <div class="edu-card fade-in">
+        <div class="edu-year">2022 – 2023</div>
+        <div class="edu-inst">Howard Community College</div>
+        <div class="edu-detail">Associate's — Humanities &amp; General Education. Includes Human Growth &amp; Development coursework with hands-on daycare practicum (PSECDP) for children ages 6 weeks–5 years.</div>
+      </div>
+      <div class="edu-card fade-in">
+        <div class="edu-year">Through 2022</div>
+        <div class="edu-inst">US K–12 Education</div>
+        <div class="edu-detail">Full American schooling from elementary through high school. The foundation of native English fluency, cultural literacy, and the worldview I carry into every room.</div>
+      </div>
+    </div>
+
+    <div class="cert-list" style="margin-top: 2.5rem;">
+      <div class="cert-item fade-in">
+        <div class="badge"></div>
+        <div><strong>Claude 101</strong> — Anthropic, 2026</div>
+      </div>
+      <div class="cert-item fade-in">
+        <div class="badge"></div>
+        <div><strong>AI Fluency: Framework &amp; Foundations</strong> — Anthropic, 2026</div>
+      </div>
+      <div class="cert-item fade-in">
+        <div class="badge"></div>
+        <div><strong>TOEIC 915</strong> — ETS, 2024 · (native-level; score is a floor, not a ceiling)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label" style="justify-content: center; text-align: center;">Let's connect</div>
+    <h2 class="section-title">Give me the opportunity.<br>I'll deliver.</h2>
+    <p class="contact-tagline">I'm actively applying for English teaching positions in South Korea. If you're looking for someone who genuinely understands both cultures and can communicate that to students — let's talk.</p>
+    <div class="contact-links">
+      <a href="mailto:geontakpark@gmail.com" class="btn btn-primary">✉ geontakpark@gmail.com</a>
+      <a href="tel:01084892018" class="btn btn-ghost">📞 010-8489-2018</a>
+      <a href="https://github.com/pgun18" target="_blank" class="btn btn-ghost">⌥ github.com/pgun18</a>
+    </div>
+    <p style="color: var(--muted); font-size: 0.85rem; font-style: italic; max-width: 540px; margin: 0 auto;">
+      "This portfolio is a starting point, not a ceiling. I have many more talents, interests, and capabilities that I am still discovering and developing. I am young, eager, and ready to prove myself."
+    </p>
+  </div>
+</section>
+
+<footer>
+  Geontak Park · 박건탁 &nbsp;·&nbsp; South Korea, 2026 &nbsp;·&nbsp; Built with intention.
+</footer>
+
+<script>
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
